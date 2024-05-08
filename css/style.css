@@ -1496,7 +1496,8 @@ content
   width: 390px;
   position: absolute;
   right: 30px;
-  bottom: 0;
+  bottom: -50px;
+  
 }
 
 /* ----- typing code ----- */
