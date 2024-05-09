@@ -242,31 +242,6 @@ $(function() {
     }
   });
 
-  $("#form").submit(function() {
-    $.ajax({
-      type: "POST",
-      url: "mail.php",
-      data: $(this).serialize()
-    }).done(function() {
-
-      var tl = anime.timeline({
-        easing: 'easeOutExpo',
-      });
-
-      tl
-        .add({
-          targets: '.art-submit',
-          opacity: 0,
-          scale: .5,
-        })
-        .add({
-          targets: '.art-success',
-          scale: 1,
-          height: '45px',
-        })
-    });
-    return false;
-  });
 
   // portfolio filter
   $('.art-filter a').on('click', function() {

@@ -20,6 +20,9 @@
   <!-- main css -->
   <link rel="stylesheet" href="css/style.css">
 
+  <!-- email js -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   <!--Icons-->
   <script src="https://kit.fontawesome.com/8c9b307514.js" crossorigin="anonymous"></script>
 
@@ -96,7 +99,7 @@
                   </li>
                   <!-- age -->
                   <li>
-                    <h6>Age:</h6><span>19</span>
+                    <h6>Age:</h6><span>20</span>
                   </li>
                 </ul>
               </div>
@@ -1812,7 +1815,7 @@
                         <!-- form field -->
                         <div class="art-form-field">
                           <!-- name input -->
-                          <input id="name" name="name" class="art-input" type="text" placeholder="Name" required>
+                          <input id="sendername" name="name" class="art-input" type="text" placeholder="Name" required>
                           <!-- label -->
                           <label for="name"><i class="fas fa-user"></i></label>
                         </div>
@@ -1820,11 +1823,10 @@
                         <!-- form field -->
                         <div class="art-form-field">
                           <!-- email input -->
-                          <input id="email" name="email" class="art-input" type="email" placeholder="Email" required>
+                          <input id="senderemail" name="email" class="art-input" type="email" placeholder="Email" required>
                           <!-- label -->
                           <label for="email"><i class="fas fa-at"></i></label>
                         </div>
-                        <!-- form field end -->
                         <!-- form field -->
                         <div class="art-form-field">
                           <!-- message textarea -->
@@ -1835,11 +1837,36 @@
                         <!-- form field end -->
                         <!-- button -->
                         <div class="art-submit-frame">
-                          <button class="art-btn art-btn-md art-submit" type="submit"><span>Send message</span></button>
+                          <button class="art-btn art-btn-md art-submit" type="button" onclick="sendMail()"><span>Send message</span></button>
                           <!-- success -->
                           <div class="art-success">Success <i class="fas fa-check"></i></div>
                         </div>
-                      </form>
+                  
+                      <script>
+                        function sendMail(){
+                          (function(){
+                            emailjs.init("MO77kKe02gIm5lVbd");//account public key
+                          })();
+
+                          let params = {
+                            sendername: document.querySelector("#sendername").value,
+                            senderemail: document.querySelector("#senderemail").value,
+                            message: document.querySelector("#message").value,
+                          };
+
+                          let serviceID = "service_44p6lu7"; //email service id
+                          let templateID = "template_xljx6yj";// email template id
+
+                          emailjs.send(serviceID, templateID, params)
+                          .then( res => {
+                            alert('Email Sent Successfully!')
+                          })
+                          .catch(err => {
+                            console.error('Email Error:', err);
+                            alert('Failed to send email. Please try again later.');
+                          });
+                        };
+                      </script>
                       <!-- contact form end -->
 
                     </div>
